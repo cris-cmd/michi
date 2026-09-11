@@ -1,0 +1,57 @@
+{
+  "name": "michi-concierge",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A voice-first AI concierge for planning local activities in Tokyo.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cris-cmd/michi.git"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build && node scripts/check-dist-secrets.mjs",
+    "preview": "vite preview",
+    "test": "npm run test:plan && npm run test:race && npm run test:server",
+    "eval": "vite-node harness/run.ts --",
+    "generate": "node scripts/generate-catalogue.mjs",
+    "test:race": "vite-node harness/race.ts",
+    "test:server": "vite-node harness/server.ts",
+    "test:plan": "vite-node harness/deterministic.ts",
+    "test:affect": "vite-node harness/affect.ts",
+    "test:secrets": "node scripts/check-dist-secrets.mjs",
+    "models:download": "scripts/download-audio-affect-model.sh",
+    "models:audio": "scripts/export-audio-affect-model.sh",
+    "models:fixtures": "scripts/fetch-affect-fixtures.sh",
+    "serve": "npm run build && vite-node server/main.ts"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "overrides": {
+    "adm-zip": "0.6.1",
+    "sharp": "0.35.4"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.78.0",
+    "@huggingface/transformers": "^4.2.0",
+    "openai": "^6.49.0",
+    "qrcode": "^1.5.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zustand": "^5.0.3"
+  },
+  "devDependencies": {
+    "@perxona/presenter-types": "^0.2.0",
+    "@tailwindcss/vite": "^4.1.0",
+    "@types/qrcode": "^1.5.5",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "tailwindcss": "^4.1.0",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7",
+    "vite-node": "^3.2.4"
+  }
+}

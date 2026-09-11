@@ -1,0 +1,27 @@
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+
+# Downloaded and locally trained affect models
+models/
+.cache/
+harness/fixtures/affect/
+
+# Python model-build artifacts
+__pycache__/
+*.py[cod]
+.venv/
+
+# Test output
+coverage/
+
+# Tooling and OS files
+*.log
+.DS_Store
+.idea/
+.vscode/

@@ -1,0 +1,159 @@
+{
+  "$comment": "Conversation scenarios for the demo, scheduling constraints, and age rules. The runner checks each structured response and validates every candidate with the deterministic engine.",
+  "scenarios": [
+    {
+      "id": "demo_path",
+      "why": "The exact hero demo: rainy Tokyo afternoon, infant along, fixed 18:00 dinner. If this regresses, the pitch dies.",
+      "turns": [
+        {
+          "say": "We have about four hours before dinner. It's raining and our eight-month-old is with us. We'd like something genuinely local and cultural, around ¥15,000. Nothing too crowded.",
+          "expect": {
+            "stage": "suggest",
+            "candidateCount": 3,
+            "constraints": {
+              "infants": 1,
+              "budget_jpy": 15000
+            },
+            "excludedMin": 1,
+            "reasonsAreSpecific": true,
+            "reasonsAreRelational": true,
+            "candidatesPassHardRules": true,
+            "minPlaced": 1,
+            "maxQuestions": 1
+          }
+        },
+        {
+          "say": "Actually, the baby just fell asleep. Quiet matters more than the budget now.",
+          "expect": {
+            "stage": "revise",
+            "candidateCount": 3,
+            "candidatesChanged": true,
+            "replyNamesADroppedActivity": true,
+            "constraintsMin": {
+              "quiet": 4
+            },
+            "budgetSoftened": true,
+            "motion": "correction",
+            "reasonsAreSpecific": true,
+            "reasonsAreRelational": true,
+            "candidatesPassHardRules": true,
+            "minPlaced": 1
+          }
+        },
+        {
+          "say": "Book the new first choice.",
+          "expect": {
+            "stage": "confirm",
+            "selectionSet": true,
+            "selectionInCandidates": true
+          }
+        },
+        {
+          "say": "Yes, go ahead.",
+          "expect": {
+            "stage": [
+              "checkout",
+              "done"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "hard_rules_weather",
+      "why": "The guest asks for something deterministically impossible (outdoor cycling, pouring rain, infant). The engine would catch it — the model must not propose it, and must say why honestly.",
+      "turns": [
+        {
+          "say": "It's pouring but we really want to be outdoors on bikes this afternoon with the baby. Around ¥20,000. Can you make it work?",
+          "expect": {
+            "candidateCount": 3,
+            "candidatesPassHardRules": true,
+            "excludedMin": 1,
+            "reasonsAreRelational": true,
+            "replyMentions": [
+              "rain"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "hard_rules_age",
+      "why": "Age rules are deterministic. A sake tasting with a child in tow must never appear as a candidate.",
+      "turns": [
+        {
+          "say": "I'd love to do a sake tasting around three o'clock — our six-year-old nephew is with us today as well as the baby.",
+          "expect": {
+            "candidateCount": 3,
+            "candidatesPassHardRules": true,
+            "excludedMin": 1,
+            "reasonsAreRelational": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "state_scope",
+      "why": "The torture conversation: outing changes must supersede old constraints — no stale quiet=5 haunting a celebration, no party-size contamination.",
+      "turns": [
+        {
+          "say": "Three adults — me and two friends — with about four hours before dinner. We'd love something fun.",
+          "expect": {
+            "stage": "suggest",
+            "candidateCount": 3,
+            "constraints": {
+              "adults": 3
+            }
+          }
+        },
+        {
+          "say": "Actually, I'm feeling a little sad today. I think I'd rather do something calming, just by myself.",
+          "expect": {
+            "stage": [
+              "suggest",
+              "revise"
+            ],
+            "candidateCount": 3,
+            "outingChange": true,
+            "constraints": {
+              "adults": 1
+            }
+          }
+        },
+        {
+          "say": "So my sister's going to visit and I kind of want to take her somewhere fun on Saturday. It'll be just the two of us, no baby along.",
+          "expect": {
+            "stage": [
+              "gather",
+              "suggest",
+              "revise"
+            ],
+            "outingChange": true,
+            "constraints": {
+              "adults": 2
+            },
+            "constraintsAbsent": [
+              "quiet",
+              "crowd_tolerance",
+              "energy"
+            ]
+          }
+        },
+        {
+          "say": "Oh and I just got promoted, so somewhere really nice to celebrate would be great.",
+          "expect": {
+            "stage": [
+              "suggest",
+              "revise"
+            ],
+            "candidateCount": 3,
+            "constraintsAbsent": [
+              "quiet",
+              "crowd_tolerance"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

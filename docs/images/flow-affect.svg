@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 760" role="img" aria-labelledby="title desc">
+  <title id="title">Michi affect listener</title>
+  <desc id="desc">English text and optional vocal tone become uncertain signals that deterministic rules use for presentation only.</desc>
+  <defs>
+    <style>
+      .bg{fill:#faf9f6}.region{fill:#edf4f1;stroke:#0a8f83;stroke-width:2;stroke-dasharray:8 7}.box{fill:#fff;stroke:#394047;stroke-width:2}.teal{stroke:#0a8f83}.label{font:700 18px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#252a2e}.body{font:15px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#626a73}.arrow{fill:none;stroke:#4d555c;stroke-width:2.5;marker-end:url(#arrow)}.caption{font:14px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#737b83}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0l10 5-10 5z" fill="#4d555c"/></marker>
+  </defs>
+  <rect class="bg" width="1400" height="760"/>
+  <text x="36" y="46" class="label" font-size="24">AFFECT LISTENER</text>
+  <text x="1364" y="46" text-anchor="end" class="caption">POST /api/michi/affect · local ONNX inference</text>
+  <rect class="region" x="360" y="80" width="980" height="390" rx="18"/>
+
+  <rect class="box" x="45" y="120" width="235" height="92" rx="12"/>
+  <text x="162" y="150" text-anchor="middle" class="label">utterance text</text>
+  <text x="162" y="176" text-anchor="middle" class="body">clause-level input</text>
+  <text x="162" y="198" text-anchor="middle" class="body">partials prewarm cache</text>
+
+  <rect class="box" x="45" y="300" width="235" height="92" rx="12"/>
+  <text x="162" y="330" text-anchor="middle" class="label">optional audio</text>
+  <text x="162" y="356" text-anchor="middle" class="body">16 kHz mono PCM</text>
+  <text x="162" y="378" text-anchor="middle" class="body">last ≤12 seconds</text>
+
+  <rect class="box teal" x="405" y="115" width="230" height="102" rx="12"/>
+  <text x="520" y="146" text-anchor="middle" class="label">clause split</text>
+  <text x="520" y="172" text-anchor="middle" class="body">sentence endings</text>
+  <text x="520" y="194" text-anchor="middle" class="body">but · でも · 但是</text>
+
+  <rect class="box teal" x="725" y="115" width="290" height="102" rx="12"/>
+  <text x="870" y="146" text-anchor="middle" class="label">GoEmotions RoBERTa</text>
+  <text x="870" y="172" text-anchor="middle" class="body">28 labels · quantized ONNX</text>
+  <text x="870" y="194" text-anchor="middle" class="body">English-only classifier</text>
+
+  <rect class="box teal" x="405" y="295" width="300" height="102" rx="12"/>
+  <text x="555" y="326" text-anchor="middle" class="label">wav2vec2 head</text>
+  <text x="555" y="352" text-anchor="middle" class="body">CREMA-D · six classes</text>
+  <text x="555" y="374" text-anchor="middle" class="body">optional quantized ONNX</text>
+
+  <rect class="box teal" x="1090" y="190" width="210" height="128" rx="12"/>
+  <text x="1195" y="222" text-anchor="middle" class="label">fusion</text>
+  <text x="1195" y="249" text-anchor="middle" class="body">salience + confidence</text>
+  <text x="1195" y="272" text-anchor="middle" class="body">audio only softens</text>
+  <text x="1195" y="295" text-anchor="middle" class="body">never changes the plan</text>
+
+  <rect class="box" x="310" y="535" width="310" height="105" rx="12"/>
+  <text x="465" y="567" text-anchor="middle" class="label">deterministic policy</text>
+  <text x="465" y="593" text-anchor="middle" class="body">intent · continuity · uncertainty</text>
+  <text x="465" y="616" text-anchor="middle" class="body">multilingual loss markers</text>
+
+  <rect class="box" x="795" y="535" width="330" height="105" rx="12"/>
+  <text x="960" y="567" text-anchor="middle" class="label">listener decision</text>
+  <text x="960" y="593" text-anchor="middle" class="body">acknowledgement · tone · motion</text>
+  <text x="960" y="616" text-anchor="middle" class="body">or deliberate silence</text>
+
+  <path class="arrow" d="M280 166h125"/>
+  <path class="arrow" d="M635 166h90"/>
+  <path class="arrow" d="M280 346h125"/>
+  <path class="arrow" d="M1015 166c45 0 45 65 75 76"/>
+  <path class="arrow" d="M705 346c190 0 275-32 385-66"/>
+  <path class="arrow" d="M1195 318v90c0 80-630 52-690 127"/>
+  <path class="arrow" d="M620 587h175"/>
+
+  <text x="36" y="704" class="caption">Fallback chain: text + audio → text only → deterministic rules</text>
+  <text x="1364" y="704" text-anchor="end" class="caption">src/server/affect.ts · src/conversation/listener/affect/</text>
+</svg>

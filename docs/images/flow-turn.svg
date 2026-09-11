@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 760" role="img" aria-labelledby="title desc">
+  <title id="title">Michi conversational turn</title>
+  <desc id="desc">A guest utterance passes through the listener, a model provider, runtime guards, and the deterministic planning engine.</desc>
+  <defs>
+    <style>
+      .bg{fill:#faf9f6}.lane{fill:#f0f0ec}.box{fill:#fff;stroke:#394047;stroke-width:2}.teal{stroke:#0a8f83}.violet{stroke:#7058c9}.amber{stroke:#b96a00}.label{font:700 18px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#252a2e}.body{font:15px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#626a73}.lane-title{font:700 15px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:2px;fill:#252a2e}.arrow{fill:none;stroke:#4d555c;stroke-width:2.5;marker-end:url(#arrow)}.dash{stroke-dasharray:8 7}.caption{font:14px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#737b83}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0l10 5-10 5z" fill="#4d555c"/></marker>
+  </defs>
+  <rect class="bg" width="1400" height="760"/>
+  <text x="36" y="46" class="label" font-size="24">ONE CONVERSATIONAL TURN</text>
+
+  <rect class="lane" x="28" y="76" width="1344" height="110" rx="14"/>
+  <rect class="lane" x="28" y="205" width="1344" height="142" rx="14"/>
+  <rect class="lane" x="28" y="366" width="1344" height="142" rx="14"/>
+  <rect class="lane" x="28" y="527" width="1344" height="142" rx="14"/>
+  <text x="48" y="105" class="lane-title">GUEST</text>
+  <text x="48" y="234" class="lane-title">LISTENER</text>
+  <text x="48" y="395" class="lane-title">MODEL + DELIVERY</text>
+  <text x="48" y="556" class="lane-title">GUARDS + ENGINE</text>
+
+  <rect class="box" x="180" y="101" width="190" height="62" rx="12"/>
+  <text x="275" y="127" text-anchor="middle" class="label">utterance</text>
+  <text x="275" y="150" text-anchor="middle" class="body">speech or text</text>
+
+  <rect class="box teal" x="470" y="230" width="260" height="92" rx="12"/>
+  <text x="600" y="258" text-anchor="middle" class="label">affect read</text>
+  <text x="600" y="282" text-anchor="middle" class="body">RoBERTa + optional wav2vec2</text>
+  <text x="600" y="305" text-anchor="middle" class="body">rules win after 500 ms</text>
+
+  <rect class="box" x="820" y="230" width="290" height="92" rx="12"/>
+  <text x="965" y="258" text-anchor="middle" class="label">turn ticket + ack</text>
+  <text x="965" y="282" text-anchor="middle" class="body">abort stale work</text>
+  <text x="965" y="305" text-anchor="middle" class="body">deterministic acknowledgement</text>
+
+  <rect class="box amber" x="470" y="391" width="310" height="92" rx="12"/>
+  <text x="625" y="419" text-anchor="middle" class="label">provider stream</text>
+  <text x="625" y="443" text-anchor="middle" class="body">Anthropic or OpenAI</text>
+  <text x="625" y="466" text-anchor="middle" class="body">reply deltas + structured JSON</text>
+
+  <rect class="box violet" x="900" y="391" width="300" height="92" rx="12"/>
+  <text x="1050" y="419" text-anchor="middle" class="label">speech + avatar</text>
+  <text x="1050" y="443" text-anchor="middle" class="body">browser / ElevenLabs</text>
+  <text x="1050" y="466" text-anchor="middle" class="body">static / Perxona</text>
+
+  <rect class="box" x="330" y="552" width="280" height="92" rx="12"/>
+  <text x="470" y="580" text-anchor="middle" class="label">runtime guards</text>
+  <text x="470" y="604" text-anchor="middle" class="body">schema · IDs · constraints</text>
+  <text x="470" y="627" text-anchor="middle" class="body">one guarded retry</text>
+
+  <rect class="box" x="760" y="552" width="330" height="92" rx="12"/>
+  <text x="925" y="580" text-anchor="middle" class="label">planning engine + store</text>
+  <text x="925" y="604" text-anchor="middle" class="body">availability · slots · budget</text>
+  <text x="925" y="627" text-anchor="middle" class="body">commit only the current ticket</text>
+
+  <path class="arrow" d="M370 132C440 132 455 208 520 230"/>
+  <path class="arrow" d="M730 276h90"/>
+  <path class="arrow" d="M900 322C820 345 740 364 690 391"/>
+  <path class="arrow" d="M780 437h120"/>
+  <path class="arrow" d="M625 483v32c0 28-90 18-120 37"/>
+  <path class="arrow" d="M610 598h150"/>
+  <path class="arrow dash" d="M1200 437h78V276h-168"/>
+  <text x="1210" y="421" class="caption">barge-in</text>
+
+  <text x="36" y="718" class="caption">src/flow/turn.ts · src/agent/core.ts · src/plan/engine.ts</text>
+  <text x="1364" y="718" text-anchor="end" class="caption">late responses are discarded before state mutation</text>
+</svg>

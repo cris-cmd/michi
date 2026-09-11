@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+/* Michi — modern SaaS surface: near-white ground, slate text, one restrained
+   accent. The avatar provides the personality; the chrome stays quiet. */
+
+@theme {
+  --font-body: "Inter", "Hiragino Sans", system-ui, sans-serif;
+
+  --color-surface: #f8fafc; /* app ground */
+  --color-panel: #ffffff;
+  --color-line: #e2e8f0;
+  --color-line-strong: #cbd5e1;
+  --color-text: #0f172a;
+  --color-muted: #64748b;
+  --color-faint: #94a3b8;
+  --color-accent: #4f46e5;
+  --color-accent-soft: #eef2ff;
+  --color-ok: #059669;
+  --color-ok-soft: #ecfdf5;
+  --color-warn: #b45309;
+  --color-warn-soft: #fffbeb;
+  --color-danger: #be123c;
+  --color-danger-soft: #fff1f2;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-surface);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- avatar ------------------------------------------------------------ */
+
+/* Perxona <sv-presenter> lives inside #presenter-slot (appended by kit.ts,
+   outside React's tree). Zero footprint until the kit reports Ready, then it
+   fills the conversation avatar card. */
+.presenter-idle {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.presenter-live {
+  width: 100%;
+  height: 100%;
+}
+
+.presenter-live sv-presenter {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Neutral fallback presence when the kit is absent (?nokit=1 etc.) */
+.avatar-orb {
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 35% 30%, #e0e7ff 0%, #a5b4fc 55%, #6366f1 100%);
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.25);
+  transition: filter 600ms ease;
+  animation: breathe 5s ease-in-out infinite;
+}
+
+.avatar-orb[data-emotion="listening"] {
+  animation: breathe 2.4s ease-in-out infinite;
+}
+
+.avatar-orb[data-emotion="thinking"] {
+  filter: saturate(0.6);
+  animation: breathe 1.4s ease-in-out infinite;
+}
+
+.avatar-orb[data-emotion="concerned"] {
+  filter: saturate(0.4) brightness(0.92);
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+}
+
+/* ---- motion ------------------------------------------------------------ */
+
+.card-enter {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: card-in 420ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+
+@keyframes card-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fade 320ms ease forwards;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.slide-in {
+  animation: slide 360ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+
+@keyframes slide {
+  from {
+    opacity: 0;
+    transform: translateX(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.pulse-dot {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}

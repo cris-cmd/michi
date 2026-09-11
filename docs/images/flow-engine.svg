@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 760" role="img" aria-labelledby="title desc">
+  <title id="title">Michi deterministic planning engine</title>
+  <desc id="desc">The model proposes identifiers, while runtime guards and deterministic TypeScript own placement, pricing, and state changes.</desc>
+  <defs>
+    <style>
+      .bg{fill:#faf9f6}.box{fill:#fff;stroke:#394047;stroke-width:2}.amber{stroke:#b96a00}.region{fill:#f5f0e7;stroke:#b96a00;stroke-width:2;stroke-dasharray:8 7}.label{font:700 18px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#252a2e}.body{font:15px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#626a73}.arrow{fill:none;stroke:#4d555c;stroke-width:2.5;marker-end:url(#arrow)}.caption{font:14px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#737b83}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0l10 5-10 5z" fill="#4d555c"/></marker>
+  </defs>
+  <rect class="bg" width="1400" height="760"/>
+  <text x="36" y="46" class="label" font-size="24">DETERMINISTIC PLANNING BOUNDARY</text>
+
+  <rect class="box" x="50" y="110" width="255" height="100" rx="12"/>
+  <text x="177" y="142" text-anchor="middle" class="label">activity catalogue</text>
+  <text x="177" y="169" text-anchor="middle" class="body">922 synthetic records</text>
+  <text x="177" y="193" text-anchor="middle" class="body">availability + constraints</text>
+
+  <rect class="box" x="50" y="290" width="255" height="100" rx="12"/>
+  <text x="177" y="322" text-anchor="middle" class="label">retrieval</text>
+  <text x="177" y="349" text-anchor="middle" class="body">hard eligibility first</text>
+  <text x="177" y="373" text-anchor="middle" class="body">bounded rows + near misses</text>
+
+  <rect class="box amber" x="425" y="110" width="300" height="100" rx="12"/>
+  <text x="575" y="142" text-anchor="middle" class="label">structured response</text>
+  <text x="575" y="169" text-anchor="middle" class="body">reply · stage · constraints</text>
+  <text x="575" y="193" text-anchor="middle" class="body">three candidate IDs</text>
+
+  <rect class="box" x="825" y="110" width="300" height="100" rx="12"/>
+  <text x="975" y="142" text-anchor="middle" class="label">runtime guards</text>
+  <text x="975" y="169" text-anchor="middle" class="body">schema · known IDs · fit</text>
+  <text x="975" y="193" text-anchor="middle" class="body">reject or retry once</text>
+
+  <rect class="region" x="400" y="285" width="880" height="245" rx="18"/>
+  <text x="430" y="321" class="label">planning engine — application truth</text>
+  <text x="430" y="363" class="body">• calculate party-aware prices and trip/day totals</text>
+  <text x="430" y="397" class="body">• enforce age, weather, lead-time, and accessibility constraints</text>
+  <text x="430" y="431" class="body">• find non-overlapping slots around fixed calendar items</text>
+  <text x="430" y="465" class="body">• preserve reservations and create an explainable decision trace</text>
+  <text x="430" y="501" class="label">the model never performs this arithmetic</text>
+
+  <rect class="box" x="115" y="600" width="260" height="92" rx="12"/>
+  <text x="245" y="632" text-anchor="middle" class="label">itinerary</text>
+  <text x="245" y="660" text-anchor="middle" class="body">placements + conflicts</text>
+
+  <rect class="box" x="570" y="600" width="260" height="92" rx="12"/>
+  <text x="700" y="632" text-anchor="middle" class="label">budget</text>
+  <text x="700" y="660" text-anchor="middle" class="body">proposed vs committed</text>
+
+  <rect class="box" x="1025" y="600" width="260" height="92" rx="12"/>
+  <text x="1155" y="632" text-anchor="middle" class="label">decision trace</text>
+  <text x="1155" y="660" text-anchor="middle" class="body">why in · why out · changes</text>
+
+  <path class="arrow" d="M177 210v80"/>
+  <path class="arrow" d="M305 340h70V160h50"/>
+  <path class="arrow" d="M725 160h100"/>
+  <path class="arrow" d="M975 210v75"/>
+  <path class="arrow" d="M590 530c0 42-345 25-345 70"/>
+  <path class="arrow" d="M700 530v70"/>
+  <path class="arrow" d="M1035 530c0 42 120 25 120 70"/>
+  <path class="arrow" d="M1260 285V80H575v30"/>
+  <text x="850" y="72" text-anchor="middle" class="caption">engine facts return in the next prompt</text>
+
+  <text x="36" y="730" class="caption">src/data/retrieval.ts · src/agent/core.ts · src/plan/engine.ts · src/flow/store.ts</text>
+</svg>
